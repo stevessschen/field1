@@ -17,7 +17,7 @@ from sklearn.metrics import precision_score, recall_score
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import classification_report
 import pickle
-import LSTM_codes
+#import LSTM_codes
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
 #st.set_option('deprecation.showPyplotGlobalUse', False)
