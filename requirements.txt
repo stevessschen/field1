@@ -1,5 +1,4 @@
 scikit-learn==0.22.2.post1
-auto-sklearn==0.10.0
 streamlit==0.66.0
 pandas==0.25.3
 numpy==1.18.5
