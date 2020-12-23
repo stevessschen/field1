@@ -2,6 +2,8 @@
 #Version 1.5 Added KMeans and autocluster
 
 import streamlit as st 
+import os #Error: OpenBLAS blas_thread_init: pthread_create: Resource temporarily unavailable
+os.environ['OPENBLAS_NUM_THREADS'] = '1'
 import numpy as np 
 import datetime
 import matplotlib.pyplot as plt
