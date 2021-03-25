@@ -216,7 +216,7 @@ if submit and classifier_name != 'LSTM-Time Series' and classifier_name != 'auto
     st.write(f'Classifier = {classifier_name}', '=> model to train the dataset')    
     
     if classifier_name == 'autoML':
-        model, X_test, y_test = autoML(X, y)
+        #model, X_test, y_test = autoML(X, y)
     else:
         #params = add_parameter_ui(classifier_name)
         clf = get_classifier(classifier_name, params)
