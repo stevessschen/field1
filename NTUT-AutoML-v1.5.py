@@ -218,22 +218,33 @@ if submit and classifier_name != 'LSTM-Time Series' and classifier_name != 'auto
     if classifier_name == 'autoML':
         #model, X_test, y_test = autoML(X, y)
         #pass
-        classifier_name == 'Random Forest'
-    #else: #Steve: comment out!
-    #params = add_parameter_ui(classifier_name)
-    clf = get_classifier(classifier_name, params)
-    #### CLASSIFICATION ####
-    #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=5678) 
-    clf.fit(X_train, y_train)
-    # save the model to disk
-    model=clf
-    pickle.dump(model, open(filename, 'wb'))    
+        clf = RandomForestClassifier(n_estimators=5, max_depth=15, random_state=1234)
+        #### CLASSIFICATION ####
+        #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=5678) 
+        clf.fit(X_train, y_train)
+        # save the model to disk
+        model=clf
+        pickle.dump(model, open(filename, 'wb'))    
         
-    y_pred = clf.predict(X_test)
-    acc = accuracy_score(y_test, y_pred)
-    st.write(f'Accuracy =', acc.round(2))
-    #Steve: else to here!
+        y_pred = clf.predict(X_test)
+        acc = accuracy_score(y_test, y_pred)
+        st.write(f'Accuracy =', acc.round(2))        
+    else: #Steve: comment out!
+        #params = add_parameter_ui(classifier_name)
+        clf = get_classifier(classifier_name, params)
+        #### CLASSIFICATION ####
+        #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=5678) 
+        clf.fit(X_train, y_train)
+        # save the model to disk
+        model=clf
+        pickle.dump(model, open(filename, 'wb'))    
+        
+        y_pred = clf.predict(X_test)
+        acc = accuracy_score(y_test, y_pred)
+        st.write(f'Accuracy =', acc.round(2))
+        #Steve: else to here!
     
     #st.write(list_y)
     lable_1 = ''
