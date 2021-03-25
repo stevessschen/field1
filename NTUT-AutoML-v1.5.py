@@ -77,9 +77,9 @@ def add_parameter_ui(clf_name):
         cycle = st.sidebar.slider('2.2 Tune parameter: Cycle (min, hr, day)', 12, 120, 30)
         params['2.2 Tune parameter: Cycle (min, hr, day)'] = cycle
     else:
-        max_depth = st.sidebar.slider('2.1 Tune parameter: max_depth', 2, 15)
+        max_depth = st.sidebar.slider('2.1 Tune parameter: max_depth', 2, 15, 5)
         params['2.1 Tune parameter: max_depth'] = max_depth
-        n_estimators = st.sidebar.slider('2.2 Tune parameter: n_estimators', 1, 100)
+        n_estimators = st.sidebar.slider('2.2 Tune parameter: n_estimators', 1, 100, 15)
         params['2.2 Tune parameter: n_estimators'] = n_estimators
     return params
 
@@ -217,21 +217,24 @@ if submit and classifier_name != 'LSTM-Time Series' and classifier_name != 'auto
     
     if classifier_name == 'autoML':
         #model, X_test, y_test = autoML(X, y)
-        pass
-    else:
-        #params = add_parameter_ui(classifier_name)
-        clf = get_classifier(classifier_name, params)
-        #### CLASSIFICATION ####
-        #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=5678) 
-        clf.fit(X_train, y_train)
-        # save the model to disk
-        model=clf
-        pickle.dump(model, open(filename, 'wb'))    
+        #pass
+        classifier_name == 'Random Forest'
+    #else: #Steve: comment out!
+    #params = add_parameter_ui(classifier_name)
+    clf = get_classifier(classifier_name, params)
+    #### CLASSIFICATION ####
+    #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=5678) 
+    clf.fit(X_train, y_train)
+    # save the model to disk
+    model=clf
+    pickle.dump(model, open(filename, 'wb'))    
         
-        y_pred = clf.predict(X_test)
-        acc = accuracy_score(y_test, y_pred)
-        st.write(f'Accuracy =', acc.round(2))
+    y_pred = clf.predict(X_test)
+    acc = accuracy_score(y_test, y_pred)
+    st.write(f'Accuracy =', acc.round(2))
+    #Steve: else to here!
+    
     #st.write(list_y)
     lable_1 = ''
     for i in range(0,len(np.unique(list_y))):
